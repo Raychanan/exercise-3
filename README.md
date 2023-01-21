@@ -4,7 +4,7 @@
 
 **DUE: Friday, January 27 by 5:30pm**
 
-GitHub invite link:
+GitHub invite link: https://classroom.github.com/a/VamtYWVa
 
 ### Instructions
 
