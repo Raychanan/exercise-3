@@ -6,17 +6,11 @@ $db = new PDO('sqlite:db/weblog.sqlite3');
 // Get the post_id from the query string
 $post_id = $_GET['post_id'];
 
-// Fetch the post 
-$post_stmt = $db->prepare('SELECT * FROM posts WHERE id = :post_id');
+// Fetch the post and comment
+$post_stmt = $db->prepare('SELECT posts.*, comments.id as comment_id, comments.author as comment_author, comments.body as comment_body FROM posts JOIN comments ON posts.id = comments.post_id WHERE posts.id = :post_id;');
 $post_stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
 $post_stmt->execute();
-$post = $post_stmt->fetch();
-
-// Fetch the comments 
-$comments_stmt = $db->prepare('SELECT * FROM comments WHERE post_id = :post_id');
-$comments_stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
-$comments_stmt->execute();
-$comments = $comments_stmt->fetchAll();
+$results = $post_stmt->fetchAll();
 
 // Check if the form was submitted
 if (isset($_POST['submit'])) {
@@ -48,22 +42,22 @@ if (isset($_POST['submit'])) {
   <div class="leave-comment">
     <h2>
       Leave a Comment on
-      <a href="weblog-hw.php#<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a>
+      <a href="weblog-hw.php#<?php echo $post_id; ?>"><?php echo $results[0]['title']; ?></a>
     </h2>
 
     <div class="post-body">
-      <?php echo $post['body']; ?>
+      <?php echo $results[0]['body']; ?>
     </div>
 
-    <h3><?php echo count($comments); ?> Comments</h3>
+    <h3><?php echo count($results); ?> Comments</h3>
     <div class="comment-block">
-      <?php foreach ($comments as $comment): ?>
+      <?php foreach ($results as $result): ?>
         <div class="comment">
           <div class="comment-body">
-            <?php echo $comment['body']; ?>
+            <?php echo $result['comment_body']; ?>
           </div>
           <div class="comment-author">
-            <?php echo $comment['author']; ?>
+            <?php echo $result['comment_author']; ?>
           </div>
         </div>
       <?php endforeach; ?>
