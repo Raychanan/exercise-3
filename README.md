@@ -84,12 +84,12 @@ One point each for:
 - Correctly retrieves a single post or comment from the the database with SELECT
 - Uses one query with a JOIN to fetch a post and any of its
   comments for the leave_comment page.
-- Uses no more than two queries to fetch all the posts and all their comments
+<!-- - Uses no more than two queries to fetch all the posts and all their comments
   for the main page. (It's possible to do this in one query, though it does make
-  looping over the results more complicated).
-- Server-side rendering: Correctly builds main page from fetched data: loops to
+  looping over the results more complicated). -->
+<!-- - Server-side rendering: Correctly builds main page from fetched data: loops to
   write Post and Comment divs. Displays newest Posts at the top, and Comments in
-  chronological order.
+  chronological order. -->
 - Correctly builds the leave_comment.php page, displaying the text of the post,
   and other comments posted so far in the thread.
 - Form submission: Correctly handles POSTing new posts and comments and parses
