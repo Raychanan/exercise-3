@@ -1,6 +1,8 @@
 <?php
 $password = "punpernickel";
 
+// In PHP, the double equal sign (==) is also used to compare values to check if they are equal. It will return TRUE if the values on both sides of the operator are equal and FALSE if they are not.
+
 if (isset($_POST["submit"])) {
   if ($_POST["password"] === $password) {
     $title = $_POST["title"];
@@ -21,11 +23,13 @@ if (isset($_POST["submit"])) {
 }
 ?>
 <html>
+
 <head>
   <title>Create a Post</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
+
 <body>
   <h1>RC's Web Journal</h1>
   <div class="create-post">
@@ -33,6 +37,7 @@ if (isset($_POST["submit"])) {
     <form method="post">
       <label for="title">Title</label>
       <input name="title"></input>
+      <!-- textarea is an HTML element that is used to create a multi-line input field for text input. It is typically used for longer pieces of text such as a blog post or message. -->
       <label for="body">Post Body</label>
       <textarea name="body"></textarea>
       <label for="password">Secret Password</label>
@@ -41,4 +46,5 @@ if (isset($_POST["submit"])) {
     </form>
   </div>
 </body>
+
 </html>
